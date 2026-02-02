@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formule di Addizione - Livello Medio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            padding: 2cm;
+            max-width: 21cm;
+            margin: 0 auto;
+            background: white;
+            color: black;
+        }
+
+        h1 {
+            font-size: 16pt;
+            text-align: center;
+            margin-bottom: 5mm;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 11pt;
+            color: #555;
+            margin-bottom: 8mm;
+        }
+
+        .instructions {
+            background: #f5f5f5;
+            padding: 4mm;
+            border-radius: 2mm;
+            margin-bottom: 8mm;
+            font-size: 11pt;
+        }
+
+        .reference-box {
+            border: 1px solid #333;
+            padding: 5mm;
+            margin-bottom: 8mm;
+            background: #fafafa;
+        }
+
+        .reference-title {
+            font-weight: bold;
+            margin-bottom: 3mm;
+        }
+
+        .formula-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3mm;
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            padding: 2mm;
+            background: #eee;
+            border-radius: 2mm;
+        }
+
+        .section {
+            margin-bottom: 10mm;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 13pt;
+            border-bottom: 1px solid #333;
+            padding-bottom: 2mm;
+            margin-bottom: 5mm;
+        }
+
+        .exercise {
+            margin-bottom: 10mm;
+            padding: 4mm;
+            border: 1px solid #ddd;
+            border-radius: 2mm;
+        }
+
+        .exercise-number {
+            font-weight: bold;
+            font-size: 13pt;
+        }
+
+        .exercise-problem {
+            font-family: 'Courier New', monospace;
+            font-size: 13pt;
+            margin: 3mm 0;
+            padding: 3mm;
+            background: #f9f9f9;
+        }
+
+        .exercise-steps {
+            margin-top: 4mm;
+        }
+
+        .step-label {
+            font-weight: bold;
+            font-size: 10pt;
+            color: #555;
+            margin-top: 3mm;
+        }
+
+        .work-line {
+            border-bottom: 1px dotted #999;
+            height: 8mm;
+            margin: 2mm 0;
+        }
+
+        .result-line {
+            border-bottom: 2px solid #333;
+            height: 8mm;
+            margin: 2mm 0;
+        }
+
+        .hint {
+            font-size: 10pt;
+            color: #666;
+            font-style: italic;
+            margin-top: 2mm;
+        }
+
+        .values-reminder {
+            font-size: 10pt;
+            background: #fffde7;
+            padding: 3mm;
+            margin-top: 3mm;
+            border-left: 3px solid #ffc107;
+        }
+
+        .footer {
+            margin-top: 15mm;
+            padding-top: 5mm;
+            border-top: 1px solid #ccc;
+            font-size: 10pt;
+            color: #666;
+        }
+
+        @media print {
+            body { padding: 1.5cm; }
+            .exercise { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Formule di Addizione - Livello Medio</h1>
+    <p class="subtitle">Applicare una formula alla volta</p>
+
+    <div class="instructions">
+        <strong>Obiettivo:</strong> Usare le formule di addizione per sviluppare espressioni con un angolo notevole.
+    </div>
+
+    <div class="reference-box">
+        <div class="reference-title">📐 Formule di addizione</div>
+        <div class="formula-grid">
+            <div class="formula">cos(α + β) = cos α cos β − sin α sin β</div>
+            <div class="formula">cos(α − β) = cos α cos β + sin α sin β</div>
+            <div class="formula">sin(α + β) = sin α cos β + cos α sin β</div>
+            <div class="formula">sin(α − β) = sin α cos β − cos α sin β</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Esercizi guidati</div>
+        
+        <div class="exercise">
+            <span class="exercise-number">1.</span> Sviluppa: <span class="exercise-problem">cos(π/3 + x)</span>
+            
+            <div class="exercise-steps">
+                <div class="step-label">Passo 1: Scrivi la formula (α = π/3, β = x)</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Passo 2: Sostituisci i valori di cos(π/3) e sin(π/3)</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Risultato finale:</div>
+                <div class="result-line"></div>
+            </div>
+            
+            <div class="values-reminder">Ricorda: cos(π/3) = 1/2, sin(π/3) = √3/2</div>
+        </div>
+
+        <div class="exercise">
+            <span class="exercise-number">2.</span> Sviluppa: <span class="exercise-problem">sin(π/6 − x)</span>
+            
+            <div class="exercise-steps">
+                <div class="step-label">Passo 1: Scrivi la formula (α = π/6, β = x)</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Passo 2: Sostituisci i valori di sin(π/6) e cos(π/6)</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Risultato finale:</div>
+                <div class="result-line"></div>
+            </div>
+            
+            <div class="values-reminder">Ricorda: sin(π/6) = 1/2, cos(π/6) = √3/2</div>
+        </div>
+
+        <div class="exercise">
+            <span class="exercise-number">3.</span> Sviluppa: <span class="exercise-problem">cos(π/4 − x)</span>
+            
+            <div class="exercise-steps">
+                <div class="step-label">Passo 1: Scrivi la formula</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Passo 2: Sostituisci i valori</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Risultato finale:</div>
+                <div class="result-line"></div>
+            </div>
+            
+            <div class="values-reminder">Ricorda: sin(π/4) = cos(π/4) = √2/2</div>
+        </div>
+
+        <div class="exercise">
+            <span class="exercise-number">4.</span> Sviluppa: <span class="exercise-problem">sin(π/3 + x)</span>
+            
+            <div class="exercise-steps">
+                <div class="step-label">Passo 1: Scrivi la formula</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Passo 2: Sostituisci i valori</div>
+                <div class="work-line"></div>
+                
+                <div class="step-label">Risultato finale:</div>
+                <div class="result-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Esercizi autonomi</div>
+        
+        <div class="exercise">
+            <span class="exercise-number">5.</span> Sviluppa: <span class="exercise-problem">cos(π/6 + x)</span>
+            <div class="work-line"></div>
+            <div class="work-line"></div>
+            <div class="result-line"></div>
+        </div>
+
+        <div class="exercise">
+            <span class="exercise-number">6.</span> Sviluppa: <span class="exercise-problem">sin(π/4 + x)</span>
+            <div class="work-line"></div>
+            <div class="work-line"></div>
+            <div class="result-line"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Nome: _________________________________ Classe: _________ Data: _________
+    </div>
+</body>
+</html>

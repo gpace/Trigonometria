@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formule di Addizione - Livello Base</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            padding: 2cm;
+            max-width: 21cm;
+            margin: 0 auto;
+            background: white;
+            color: black;
+        }
+
+        h1 {
+            font-size: 16pt;
+            text-align: center;
+            margin-bottom: 5mm;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 11pt;
+            color: #555;
+            margin-bottom: 8mm;
+        }
+
+        .instructions {
+            background: #f5f5f5;
+            padding: 4mm;
+            border-radius: 2mm;
+            margin-bottom: 8mm;
+            font-size: 11pt;
+        }
+
+        .reference-box {
+            border: 1px solid #333;
+            padding: 5mm;
+            margin-bottom: 8mm;
+            background: #fafafa;
+        }
+
+        .reference-title {
+            font-weight: bold;
+            margin-bottom: 3mm;
+        }
+
+        .circle-values {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 3mm;
+        }
+
+        .angle-group {
+            text-align: center;
+            padding: 3mm;
+        }
+
+        .angle-name {
+            font-weight: bold;
+            font-size: 13pt;
+            margin-bottom: 2mm;
+        }
+
+        .section {
+            margin-bottom: 10mm;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 13pt;
+            border-bottom: 1px solid #333;
+            padding-bottom: 2mm;
+            margin-bottom: 5mm;
+        }
+
+        .exercise {
+            margin-bottom: 6mm;
+            padding-left: 5mm;
+        }
+
+        .exercise-number {
+            font-weight: bold;
+        }
+
+        .blank {
+            display: inline-block;
+            width: 15mm;
+            border-bottom: 1px solid #333;
+            margin: 0 2mm;
+        }
+
+        .exercise-row {
+            display: flex;
+            align-items: center;
+            margin: 3mm 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12pt;
+        }
+
+        .footer {
+            margin-top: 15mm;
+            padding-top: 5mm;
+            border-top: 1px solid #ccc;
+            font-size: 10pt;
+            color: #666;
+        }
+
+        @media print {
+            body { padding: 1.5cm; }
+            .reference-box { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Formule di Addizione - Livello Base</h1>
+    <p class="subtitle">Valori notevoli e sostituzioni</p>
+
+    <div class="instructions">
+        <strong>Obiettivo:</strong> Ricordare i valori di seno e coseno degli angoli notevoli e saperli sostituire nelle espressioni.
+    </div>
+
+    <div class="reference-box">
+        <div class="reference-title">📐 Valori notevoli (dal cerchio goniometrico)</div>
+        <div class="circle-values">
+            <div class="angle-group">
+                <div class="angle-name">π/6 = 30°</div>
+                <div>sin(π/6) = 1/2</div>
+                <div>cos(π/6) = √3/2</div>
+            </div>
+            <div class="angle-group">
+                <div class="angle-name">π/4 = 45°</div>
+                <div>sin(π/4) = √2/2</div>
+                <div>cos(π/4) = √2/2</div>
+            </div>
+            <div class="angle-group">
+                <div class="angle-name">π/3 = 60°</div>
+                <div>sin(π/3) = √3/2</div>
+                <div>cos(π/3) = 1/2</div>
+            </div>
+            <div class="angle-group">
+                <div class="angle-name">π/2 = 90°</div>
+                <div>sin(π/2) = 1</div>
+                <div>cos(π/2) = 0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Parte A: Scrivi il valore</div>
+        
+        <div class="exercise">
+            <span class="exercise-number">1.</span> cos(π/3) = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">2.</span> sin(π/6) = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">3.</span> sin(π/3) = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">4.</span> cos(π/6) = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">5.</span> sin(π/4) = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">6.</span> cos(π/4) = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">7.</span> sin(π/2) = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">8.</span> cos(π/2) = <span class="blank"></span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Parte B: Sostituisci i valori</div>
+        <p style="margin-bottom: 5mm; font-size: 11pt;">Riscrivi le espressioni sostituendo i valori notevoli (non devi semplificare).</p>
+        
+        <div class="exercise">
+            <span class="exercise-number">9.</span> cos(π/3) · cos(x) + sin(π/3) · sin(x)
+            <div class="exercise-row">= <span class="blank"></span> · cos(x) + <span class="blank"></span> · sin(x)</div>
+        </div>
+        
+        <div class="exercise">
+            <span class="exercise-number">10.</span> sin(π/6) · cos(x) + cos(π/6) · sin(x)
+            <div class="exercise-row">= <span class="blank"></span> · cos(x) + <span class="blank"></span> · sin(x)</div>
+        </div>
+        
+        <div class="exercise">
+            <span class="exercise-number">11.</span> cos(π/4) · cos(x) − sin(π/4) · sin(x)
+            <div class="exercise-row">= <span class="blank"></span> · cos(x) − <span class="blank"></span> · sin(x)</div>
+        </div>
+        
+        <div class="exercise">
+            <span class="exercise-number">12.</span> sin(π/3) · cos(x) − cos(π/3) · sin(x)
+            <div class="exercise-row">= <span class="blank"></span> · cos(x) − <span class="blank"></span> · sin(x)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Parte C: Riconosci l'angolo</div>
+        <p style="margin-bottom: 5mm; font-size: 11pt;">Quale angolo ha questi valori?</p>
+        
+        <div class="exercise">
+            <span class="exercise-number">13.</span> sin(?) = 1/2 e cos(?) = √3/2 → ? = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">14.</span> sin(?) = √3/2 e cos(?) = 1/2 → ? = <span class="blank"></span>
+        </div>
+        <div class="exercise">
+            <span class="exercise-number">15.</span> sin(?) = √2/2 e cos(?) = √2/2 → ? = <span class="blank"></span>
+        </div>
+    </div>
+
+    <div class="footer">
+        Nome: _________________________________ Classe: _________ Data: _________
+    </div>
+</body>
+</html>

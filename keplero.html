@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leggi di Keplero – 4L</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #111827;
+    --bg3: #1a2235;
+    --accent: #c8a96e;
+    --accent2: #7aa8d4;
+    --text: #e8e4d8;
+    --muted: #8a8a8a;
+    --gold: #d4a843;
+    --starblue: #a8c8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Nav */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: var(--bg2);
+    border-bottom: 1px solid #2a3450;
+    flex-shrink: 0;
+  }
+  nav button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    padding: 12px 28px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  nav button.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  nav button:hover:not(.active) { color: var(--text); }
+
+  /* Slides */
+  .section { display: none; height: calc(100vh - 44px); overflow: hidden; }
+  .section.active { display: flex; flex-direction: column; }
+
+  /* ─── SEZIONE 1: SCHEMA ─── */
+  #schema {
+    padding: 24px 32px 16px;
+    gap: 16px;
+  }
+  .schema-title {
+    text-align: center;
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .schema-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+  }
+  .schema-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .schema-col-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 4px;
+    border-bottom: 1px solid #2a3450;
+  }
+  .schema-item {
+    background: var(--bg3);
+    border: 1px solid #2a3450;
+    border-left: 3px solid var(--accent2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .schema-item.keplero { border-left-color: var(--gold); }
+  .schema-item .tag {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Leggi box nella sezione schema */
+  .leggi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .legge-box {
+    background: var(--bg3);
+    border: 1px solid #2a3450;
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .legge-box .num {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .legge-box p { font-size: 13px; line-height: 1.5; }
+
+  /* ─── SEZIONE 2: TERZA LEGGE ─── */
+  #terza {
+    padding: 0;
+    flex-direction: row;
+  }
+  .slide-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 48px;
+    overflow-y: auto;
+  }
+  .slide-pane h2 {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .slide-pane h3 {
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .slide-pane p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #c8c4b8;
+    margin-bottom: 16px;
+  }
+  .formula-box {
+    background: var(--bg3);
+    border: 1px solid #2a3450;
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 20px;
+  }
+  .formula-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 8px;
+  }
+  .divider-v {
+    width: 1px;
+    background: #2a3450;
+    flex-shrink: 0;
+  }
+
+  /* Tabella pianeti */
+  .planet-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  .planet-table th {
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #2a3450;
+    font-weight: normal;
+  }
+  .planet-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #1a2235;
+    color: #c8c4b8;
+  }
+  .planet-table tr:last-child td { border-bottom: none; }
+  .planet-table .check { color: var(--gold); text-align: center; }
+
+  /* Slider interattivo */
+  .inter-area {
+    background: var(--bg3);
+    border: 1px solid #2a3450;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  .inter-area label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .inter-area input[type=range] {
+    width: 100%;
+    margin: 8px 0;
+    accent-color: var(--gold);
+  }
+  .inter-result {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .inter-val {
+    flex: 1;
+    text-align: center;
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .inter-val .lbl { font-size: 11px; color: var(--muted); display: block; }
+  .inter-val .val { font-size: 18px; color: var(--gold); }
+
+  /* Orbite animazione canvas */
+  #orbit-canvas {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* ─── SEZIONE 3: CONSEGNA ─── */
+  #consegna {
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 24px;
+  }
+  .consegna-header {
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .consegna-header h1 {
+    font-size: 28px;
+    font-weight: normal;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+  .consegna-header p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+  .consegna-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+  }
+  .consegna-card {
+    background: var(--bg3);
+    border: 1px solid #2a3450;
+    border-radius: 12px;
+    padding: 24px 20px;
+  }
+  .consegna-card .num {
+    font-size: 32px;
+    color: var(--gold);
+    opacity: 0.5;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .consegna-card h3 {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  .consegna-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #c8c4b8;
+  }
+  .consegna-footer {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid #2a3450;
+    padding-top: 16px;
+    width: 100%;
+    max-width: 900px;
+  }
+  .consegna-footer strong { color: var(--accent); }
+
+  /* Keyboard hint */
+  .kb-hint {
+    position: fixed;
+    bottom: 10px;
+    right: 14px;
+    font-size: 11px;
+    color: #3a4060;
+    font-family: monospace;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="active" onclick="showSection('schema')">① Percorso svolto</button>
+  <button onclick="showSection('terza')">② Terza legge</button>
+  <button onclick="showSection('consegna')">③ Attività di oggi</button>
+</nav>
+
+<!-- ═══════════════ SEZIONE 1: SCHEMA ═══════════════ -->
+<div id="schema" class="section active">
+  <div class="schema-title">Percorso svolto – Leggi di Keplero</div>
+
+  <div class="schema-grid">
+    <!-- COLONNA SINISTRA: osservazioni -->
+    <div class="schema-col">
+      <div class="schema-col-title">Osservazioni del cielo</div>
+
+      <div class="schema-item">
+        <span class="tag">Moto diurno</span>
+        La sfera celeste ruota intorno alla Terra in ~24 ore. Le stelle lasciano tracce circolari nelle fotografie a lunga esposizione.
+      </div>
+
+      <div class="schema-item">
+        <span class="tag">Stelle fisse vs pianeti erranti</span>
+        Le stelle mantengono posizioni relative fisse tra loro. I pianeti si spostano rispetto alle stelle nel corso di settimane e mesi.
+      </div>
+
+      <div class="schema-item">
+        <span class="tag">Zodiaco</span>
+        Le 12 costellazioni zodiacali si trovano sul piano dell'eclittica: Sole, Luna e pianeti si muovono sempre in questa fascia.
+      </div>
+
+      <div class="schema-item">
+        <span class="tag">Moto del Sole e della Luna</span>
+        Moto diurno regolare da Est a Ovest. Il Sole percorre lo zodiaco in ~1 anno; la Luna in ~1 mese.
+      </div>
+
+      <div class="schema-item">
+        <span class="tag">Moto retrogrado di Marte</span>
+        Marte rallenta, si ferma, torna indietro per settimane, poi riprende. Difficile da spiegare con orbite circolari geocentriche.
+      </div>
+    </div>
+
+    <!-- COLONNA DESTRA: dalla storia a Keplero -->
+    <div class="schema-col">
+      <div class="schema-col-title">Da Tycho Brahe a Keplero</div>
+
+      <div class="schema-item keplero">
+        <span class="tag">Tycho Brahe (dati)</span>
+        Misurazioni precise delle posizioni di Marte per 20 anni, senza telescopio, con un errore inferiore al minuto d'arco.
+      </div>
+
+      <div class="schema-item keplero">
+        <span class="tag">Metodo di Keplero (triangoli simili)</span>
+        Keplero usa lo stesso punto di Marte osservato da posizioni diverse della Terra lungo l'anno. Triangoli simili → posizione di Marte rispetto al Sole.
+      </div>
+
+      <div class="schema-item keplero">
+        <span class="tag">Risultato chiave</span>
+        L'orbita di Marte <em>non è circolare</em>. È un'ellisse con il Sole in uno dei fuochi. Otto anni di tentativi falliti con cerchi, poi la svolta.
+      </div>
+    </div>
+  </div>
+
+  <!-- TRE LEGGI in fondo -->
+  <div class="leggi-row">
+    <div class="legge-box">
+      <span class="num">I legge – Orbite ellittiche</span>
+      <p>I pianeti percorrono orbite <strong>ellittiche</strong> con il Sole in uno dei fuochi.</p>
+    </div>
+    <div class="legge-box">
+      <span class="num">II legge – Aree uguali</span>
+      <p>Il raggio vettore Sole–pianeta spazza <strong>aree uguali</strong> in tempi uguali.</p>
+    </div>
+    <div class="legge-box" style="border-left: 3px solid var(--gold);">
+      <span class="num">III legge – Periodi e distanze</span>
+      <p>$T^2 \propto a^3$ &nbsp;·&nbsp; <span style="color:var(--muted);font-size:12px">approfondimento →</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SEZIONE 2: TERZA LEGGE ═══════════════ -->
+<div id="terza" class="section">
+  <!-- Pannello sinistro: spiegazione -->
+  <div class="slide-pane" style="max-width: 520px; flex: 0 0 520px;">
+    <h2>Terza legge di Keplero</h2>
+    <h3>Più lontano dal Sole, più lento il pianeta</h3>
+
+    <p>Keplero si accorse che i pianeti più lontani impiegano più tempo a compiere un'orbita — non solo perché l'orbita è più lunga, ma anche perché si muovono più lentamente. La relazione precisa è:</p>
+
+    <div class="formula-box">
+      $$\frac{T^2}{a^3} = \text{costante}$$
+    </div>
+    <div class="formula-label">$T$ = periodo orbitale &nbsp;·&nbsp; $a$ = semiasse maggiore</div>
+
+    <p style="margin-top: 16px;">Usando le <strong>unità astronomiche</strong> (UA) per la distanza e gli <strong>anni</strong> per il periodo, la costante vale <em>esattamente 1</em> per tutti i pianeti del Sistema Solare:</p>
+
+    <div class="formula-box" style="font-size:17px;">
+      $$T^2 = a^3 \quad \Longrightarrow \quad T = a^{3/2}$$
+    </div>
+
+    <p>Questo vale per <em>ogni</em> corpo in orbita attorno al Sole: pianeti, asteroidi, comete. La stessa costante non vale però per satelliti di altri pianeti (hanno costanti proprie).</p>
+
+    <div class="inter-area">
+      <label>Semiasse $a$ (UA)</label>
+      <input type="range" min="0.2" max="30" step="0.1" value="1.0" id="slider-a" oninput="calcT()">
+      <div class="inter-result">
+        <div class="inter-val"><span class="lbl">Distanza $a$</span><span class="val" id="val-a">1.00 UA</span></div>
+        <div class="inter-val"><span class="lbl">Periodo $T$</span><span class="val" id="val-t">1.00 anni</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-v"></div>
+
+  <!-- Pannello destro: tabella + canvas -->
+  <div class="slide-pane" style="gap: 0; padding: 24px 32px;">
+    <table class="planet-table">
+      <thead>
+        <tr>
+          <th>Pianeta</th>
+          <th>$a$ (UA)</th>
+          <th>$T$ (anni)</th>
+          <th>$T^2/a^3$</th>
+          <th class="check">✓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Mercurio</td><td>0.387</td><td>0.241</td><td>1.002</td><td class="check">≈1</td></tr>
+        <tr><td>Venere</td><td>0.723</td><td>0.615</td><td>1.000</td><td class="check">≈1</td></tr>
+        <tr><td>Terra</td><td>1.000</td><td>1.000</td><td>1.000</td><td class="check">= 1</td></tr>
+        <tr><td>Marte</td><td>1.524</td><td>1.881</td><td>1.000</td><td class="check">≈1</td></tr>
+        <tr><td>Giove</td><td>5.203</td><td>11.86</td><td>0.999</td><td class="check">≈1</td></tr>
+        <tr><td>Saturno</td><td>9.537</td><td>29.46</td><td>1.000</td><td class="check">≈1</td></tr>
+        <tr><td>Urano</td><td>19.19</td><td>84.01</td><td>1.000</td><td class="check">≈1</td></tr>
+        <tr><td>Nettuno</td><td>30.07</td><td>164.8</td><td>0.999</td><td class="check">≈1</td></tr>
+      </tbody>
+    </table>
+
+    <canvas id="orbit-canvas" style="margin-top:12px;"></canvas>
+  </div>
+</div>
+
+<!-- ═══════════════ SEZIONE 3: CONSEGNA ═══════════════ -->
+<div id="consegna" class="section">
+  <div class="consegna-header">
+    <h1>Attività – Leggi di Keplero</h1>
+    <p>Lavoro individuale &nbsp;·&nbsp; ~45 minuti &nbsp;·&nbsp; Google Doc o foglio</p>
+  </div>
+
+  <div class="consegna-grid">
+    <div class="consegna-card">
+      <div class="num">1</div>
+      <h3>Enunciati con parole tue</h3>
+      <p>Scrivi le tre leggi di Keplero usando le tue parole. Non copiare dalla pagina web: spiega come se dovessi spiegarle a un amico che non c'era a lezione.</p>
+    </div>
+    <div class="consegna-card">
+      <div class="num">2</div>
+      <h3>Un'immagine per legge</h3>
+      <p>Cerca online un'immagine o uno schema per ciascuna delle tre leggi. Inseriscila nel documento e scrivi <strong>una frase</strong> che spiega perché l'hai scelta.</p>
+    </div>
+    <div class="consegna-card">
+      <div class="num">3</div>
+      <h3>Una domanda aperta</h3>
+      <p>Scrivi una cosa che non ti è ancora chiara, o che ti ha incuriosito. Non c'è risposta sbagliata: serve per capire dove siamo.</p>
+    </div>
+  </div>
+
+  <div class="consegna-footer">
+    <strong>Consegna:</strong> entro la fine dell'ora, condividi il documento o consegna il foglio. &nbsp;·&nbsp;
+    Giovedì verificheremo insieme quello che avete scritto.
+  </div>
+</div>
+
+<div class="kb-hint">← → cambia sezione</div>
+
+<script>
+// ── navigazione ──
+const sections = ['schema','terza','consegna'];
+let current = 0;
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = sections.indexOf(id);
+  document.querySelectorAll('nav button')[idx].classList.add('active');
+  current = idx;
+  if (id === 'terza') { setTimeout(drawOrbits, 100); }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    if (current < sections.length - 1) showSection(sections[current + 1]);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    if (current > 0) showSection(sections[current - 1]);
+  }
+});
+
+// ── slider terza legge ──
+function calcT() {
+  const a = parseFloat(document.getElementById('slider-a').value);
+  const T = Math.pow(a, 1.5);
+  document.getElementById('val-a').textContent = a.toFixed(2) + ' UA';
+  document.getElementById('val-t').textContent = T.toFixed(2) + ' anni';
+}
+
+// ── canvas orbite ──
+function drawOrbits() {
+  const canvas = document.getElementById('orbit-canvas');
+  if (!canvas) return;
+  const parent = canvas.parentElement;
+  const tableH = parent.querySelector('table').offsetHeight;
+  const availH = parent.clientHeight - tableH - 40;
+  canvas.width = parent.clientWidth;
+  canvas.height = Math.max(availH, 120);
+
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  // sfondo
+  ctx.fillStyle = '#0d1220';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, W, H, 8);
+  ctx.fill();
+
+  const cx = W / 2, cy = H / 2;
+  const scale = Math.min(W, H) * 0.42;
+
+  // pianeti: [nome, a_UA, colore, r_punto]
+  const planets = [
+    ['☿', 0.387, '#b0a0a0', 3],
+    ['♀', 0.723, '#e8c870', 4],
+    ['⊕', 1.000, '#6aabde', 4],
+    ['♂', 1.524, '#c86440', 4],
+    ['♃', 5.203, '#c8a870', 6],
+  ];
+  const maxA = 5.5;
+
+  // stelle di sfondo
+  ctx.fillStyle = '#ffffff';
+  for (let i = 0; i < 60; i++) {
+    const sx = Math.random() * W;
+    const sy = Math.random() * H;
+    const sr = Math.random() * 1.2;
+    ctx.globalAlpha = 0.15 + Math.random() * 0.3;
+    ctx.beginPath();
+    ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  // Sole
+  const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, 12);
+  gradient.addColorStop(0, '#fff8d0');
+  gradient.addColorStop(0.4, '#f5c542');
+  gradient.addColorStop(1, '#d4720000');
+  ctx.fillStyle = gradient;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+  ctx.fill();
+
+  planets.forEach(([name, a, color, rp]) => {
+    const r = (a / maxA) * scale;
+
+    // orbita
+    ctx.strokeStyle = color;
+    ctx.globalAlpha = 0.18;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    // angolo casuale fisso per sembrare posizionati
+    const seed = a * 137.5 * (Math.PI / 180);
+    const px = cx + r * Math.cos(seed);
+    const py = cy + r * Math.sin(seed);
+
+    // punto pianeta
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(px, py, rp, 0, Math.PI * 2);
+    ctx.fill();
+
+    // etichetta
+    ctx.fillStyle = color;
+    ctx.globalAlpha = 0.8;
+    ctx.font = `11px Georgia`;
+    ctx.fillText(name, px + rp + 3, py + 4);
+    ctx.globalAlpha = 1;
+  });
+
+  // legenda $T^2 = a^3$
+  ctx.fillStyle = '#d4a843';
+  ctx.globalAlpha = 0.5;
+  ctx.font = 'italic 12px Georgia';
+  ctx.fillText('T² = a³', W - 70, H - 12);
+  ctx.globalAlpha = 1;
+}
+
+// init slider
+calcT();
+</script>
+</body>
+</html>
